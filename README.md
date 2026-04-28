@@ -11,17 +11,17 @@
 
 ## 🎯 What This Project Does
 
-✔ Builds a complete **AI data training pipeline**  
-✔ Generates **sentiment labels (rule-based + AI-based)**  
-✔ Compares **AI predictions vs ground truth**  
-✔ Identifies **real-world model weaknesses**  
-✔ Performs **error analysis & data quality checks**
+- Builds an end-to-end **AI data training pipeline**  
+- Generates **sentiment labels (rule-based + AI-based)**  
+- Compares **AI predictions vs ground truth**  
+- Identifies **model weaknesses**  
+- Performs **error analysis & data quality checks**
 
 ---
 
 ## 🧭 Project Overview
 
-This project simulates the real workflow of an **AI Data Trainer**.
+This project replicates the real workflow of an **AI Data Trainer**.
 
 From raw customer reviews → to final evaluation:
 
@@ -142,7 +142,7 @@ label_match = rating_label == predicted_label
 ### 📈 Label Distribution
 ![Label Distribution](assets/label_distribution.png)
 
-> Most reviews are positive → dataset imbalance observed
+> Most reviews are positive, indicating dataset imbalance.
 
 ---
 
@@ -225,11 +225,6 @@ This project demonstrates a complete workflow of an:
 
 ---
 
-## ⭐ Future Improvements
-
-- Add advanced NLP models (Transformers)  
-- Improve language detection  
-- Build interactive dashboard  
 
 ---
 
@@ -240,4 +235,4 @@ This project demonstrates a complete workflow of an:
 
 ---
 
-⭐ *If you found this useful, consider giving it a star!*
+⭐ If you found this project useful, consider giving it a star!
