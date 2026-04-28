@@ -1,4 +1,4 @@
-# 📊 AI-Assisted Sentiment Labeling Pipeline  
+# 📊 AI-Assisted Sentiment Labeling Pipeline with Ground Truth Validation and Error Analysis
 ### 🚀 End-to-End AI Data Training & Evaluation Workflow
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python)
