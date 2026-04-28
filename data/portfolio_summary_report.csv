@@ -1,0 +1,14 @@
+metric,value
+total_reviews,39.0
+matched_reviews,27.0
+mismatched_reviews,12.0
+match_percentage,69.23
+mismatch_percentage,30.77
+rating_positive_count,31.0
+rating_neutral_count,6.0
+rating_negative_count,2.0
+predicted_positive_count,27.0
+predicted_neutral_count,12.0
+predicted_negative_count,0.0
+english_or_unknown_count,24.0
+possible_non_english_count,15.0
