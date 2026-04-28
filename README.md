@@ -27,7 +27,6 @@ From raw customer reviews → to final evaluation:
 
 ```text
 Raw Data → Clean → Label → Predict → Compare → Analyze → Report
-
 ```
 
 ---
@@ -53,13 +52,17 @@ Result: Match ✅
 
 ### 🔹 Pipeline Output
 
-![Pipeline Demo](assets/demo_pipeline.png)
+<p align="center">
+  <img src="assets/demo_pipeline.png" width="700"/>
+</p>
 
 ---
 
 ### 🔹 AI Mistake Example
 
-![Mismatch Example](assets/demo_mismatch.png)
+<p align="center">
+  <img src="assets/demo_mismatch.png" width="600"/>
+</p>
 
 ```text
 Text:
@@ -140,16 +143,22 @@ label_match = rating_label == predicted_label
 ## 📊 Results
 
 ### 📈 Label Distribution
-![Label Distribution](assets/label_distribution.png)
+
+<p align="center">
+  <img src="assets/label_distribution.png" width="500"/>
+</p>
 
 > Most reviews are positive, indicating dataset imbalance.
 
 ---
 
 ### 📉 Prediction Accuracy
-![Prediction Accuracy](assets/match_vs_mismatch.png)
 
-> AI performs well overall but struggles with non-English and short text
+<p align="center">
+  <img src="assets/match_vs_mismatch.png" width="500"/>
+</p>
+
+> AI performs well overall but struggles with non-English and short text.
 
 ---
 
@@ -189,9 +198,9 @@ AI Prediction: neutral ❌
 ```text
 ai-review-sentiment-pipeline/
 │
-├── data/
-├── src/
-├── assets/
+├── data/ (datasets and outputs)
+├── src/ (pipeline scripts)
+├── assets/ (images and charts)
 ├── README.md
 └── requirements.txt
 ```
@@ -219,14 +228,10 @@ python src/08_export_reports.py
 
 ## 🏁 Final Result
 
-This project demonstrates a complete workflow of an:
-
-> 🎯 **AI Data Trainer / Data Analyst / Junior ML Role**
-
+This project delivers a complete, real-world simulation of an **AI data training and evaluation workflow**
 ---
 
 
----
 
 ## 📌 Author
 
