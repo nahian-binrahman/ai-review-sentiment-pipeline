@@ -1,39 +1,40 @@
-# 📊 AI-Assisted Sentiment Labeling Pipeline with Ground Truth Validation and Error Analysis
+# 📊 AI-Assisted Sentiment Labeling Pipeline  
+### 🚀 End-to-End AI Data Training & Evaluation Workflow
 
-## 🚀 What This Project Shows
+![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Processing-purple?logo=pandas)
+![TextBlob](https://img.shields.io/badge/TextBlob-NLP-green)
+![Status](https://img.shields.io/badge/Project-Completed-brightgreen)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
-- Built a complete **AI data training pipeline**
-- Compared **AI predictions vs ground truth labels**
-- Identified **model weaknesses** such as non-English text and short reviews
-- Performed **real-world error analysis**
+---
+
+## 🎯 What This Project Does
+
+✔ Builds a complete **AI data training pipeline**  
+✔ Generates **sentiment labels (rule-based + AI-based)**  
+✔ Compares **AI predictions vs ground truth**  
+✔ Identifies **real-world model weaknesses**  
+✔ Performs **error analysis & data quality checks**
 
 ---
 
 ## 🧭 Project Overview
 
-This project simulates the workflow of an **AI Data Trainer**.
+This project simulates the real workflow of an **AI Data Trainer**.
 
-It processes raw customer reviews and performs:
+From raw customer reviews → to final evaluation:
 
-- Data cleaning
-- Sentiment labeling
-- AI evaluation
-- Error analysis
-- Data quality inspection
+```text
+Raw Data → Clean → Label → Predict → Compare → Analyze → Report
+
+```
 
 ---
 
 ## 🖼️ Demo
 
-### Pipeline Output
-
-![Pipeline Demo](assets/demo_pipeline.png)
-
-### AI Mistake Example
-
-![Mismatch Example](assets/demo_mismatch.png)
-
-### Before → After → Label → Result
+### 🔹 Before → After → Result
 
 ```text
 Before:
@@ -48,7 +49,17 @@ predicted_label: positive
 Result: Match ✅
 ```
 
-### AI Mistake Example
+---
+
+### 🔹 Pipeline Output
+
+![Pipeline Demo](assets/demo_pipeline.png)
+
+---
+
+### 🔹 AI Mistake Example
+
+![Mismatch Example](assets/demo_mismatch.png)
 
 ```text
 Text:
@@ -65,61 +76,30 @@ Reason: Non-English text
 
 ## 🛠️ Tech Stack
 
-- 🐍 Python
-- 📦 Pandas
-- 🧠 TextBlob
-- 💻 VS Code + Git Bash
-
----
-
-## 📁 Project Structure
-
-```text
-ai-review-labeling-pipeline/
-│
-├── data/
-│   ├── raw_reviews.csv
-│   ├── portfolio_final_reviews.csv
-│   ├── portfolio_mismatch_report.csv
-│   └── portfolio_summary_report.csv
-│
-├── src/
-│   ├── 01_load_and_select.py
-│   ├── 02_prepare_text.py
-│   ├── 03_clean_text.py
-│   ├── 04_create_labels.py
-│   ├── 05_compare_labels.py
-│   ├── 06_analyze_mistakes.py
-│   ├── 06b_add_mistake_reasons.py
-│   ├── 07_detect_language_issues.py
-│   ├── 07b_create_english_only_dataset.py
-│   └── 08_export_reports.py
-│
-├── assets/
-├── README.md
-└── requirements.txt
-```
+| Tool | Purpose |
+|------|--------|
+| 🐍 Python | Core programming |
+| 📦 Pandas | Data processing |
+| 🧠 TextBlob | Sentiment prediction |
+| 💻 VS Code + Git Bash | Development |
 
 ---
 
 ## ⚙️ Pipeline Workflow
 
-### 🧹 1. Data Selection
-- Removed unnecessary columns  
-- Kept useful features  
-
-### 🧩 2. Text Preparation
+### 🧹 Data Processing
+- Removed irrelevant columns  
 - Combined `title + review`  
 - Handled missing values  
 
-### 🧼 3. Text Cleaning
+### 🧼 Text Cleaning
 - Removed HTML tags (`<br>`)  
-- Removed special characters and URLs  
-- Converted text to lowercase  
+- Removed noise (symbols, URLs)  
+- Normalized text  
 
 ---
 
-### 🧠 4. Sentiment Labeling
+### 🧠 Sentiment Labeling
 
 #### Ground Truth (Rating-Based)
 
@@ -136,79 +116,61 @@ ai-review-labeling-pipeline/
 
 ---
 
-### 🔍 5. Label Comparison
-
-Created:
+### 🔍 Evaluation
 
 ```text
-label_match
-```
-
-Checks:
-
-```text
-rating_label == predicted_label
+label_match = rating_label == predicted_label
 ```
 
 ---
 
-### 📉 6. Error Analysis
-
-Extracted mismatched rows:
-
-```text
-portfolio_mismatch_report.csv
-```
+### 📉 Error Analysis
+- Extracted mismatched predictions  
+- Identified failure patterns  
+- Added mistake reasons  
 
 ---
 
-### 🌍 7. Language Detection
-
-Added:
-
-```text
-language_flag
-```
-
-Values:
-- `english_or_unknown`
-- `possible_non_english`
-
----
-
-### 📊 8. Final Outputs
-
-- 📄 `portfolio_final_reviews.csv` → full dataset  
-- ⚠️ `portfolio_mismatch_report.csv` → AI mistakes  
-- 📈 `portfolio_summary_report.csv` → summary metrics  
-
----
-
-## 📊 Sample Insight
-
-```text
-Text: excelentes a mi esposo le encantan
-Rating: 5 (positive)
-AI Prediction: neutral ❌
-Reason: Non-English text
-```
+### 🌍 Data Quality Check
+- Detected non-English reviews  
+- Flagged potential issues  
 
 ---
 
 ## 📊 Results
 
-### Label Distribution
+### 📈 Label Distribution
 ![Label Distribution](assets/label_distribution.png)
 
-### Prediction Accuracy
+> Most reviews are positive → dataset imbalance observed
+
+---
+
+### 📉 Prediction Accuracy
 ![Prediction Accuracy](assets/match_vs_mismatch.png)
+
+> AI performs well overall but struggles with non-English and short text
+
+---
+
+## 📊 Key Insight
+
+```text
+Text: excelentes a mi esposo le encantan
+Rating: 5 (positive)
+AI Prediction: neutral ❌
+```
+
+👉 Insight: Simple NLP models fail on **non-English + contextual sentiment**
+
+---
 
 ## 💡 Key Learnings
 
 - Data quality directly impacts AI performance  
-- Non-English text reduces accuracy  
-- Rating labels act as ground truth  
-- Error analysis is critical in AI workflows  
+- Non-English text reduces prediction accuracy  
+- Rating-based labels act as reliable ground truth  
+- Error analysis reveals real-world model limitations  
 
 ---
 
@@ -219,6 +181,20 @@ Reason: Non-English text
 - 🔍 AI evaluation  
 - ⚠️ Error analysis  
 - 📊 Dataset quality assessment  
+
+---
+
+## 📁 Project Structure
+
+```text
+ai-review-sentiment-pipeline/
+│
+├── data/
+├── src/
+├── assets/
+├── README.md
+└── requirements.txt
+```
 
 ---
 
@@ -243,13 +219,25 @@ python src/08_export_reports.py
 
 ## 🏁 Final Result
 
-This project demonstrates a complete workflow of an **AI Data Trainer**, including:
+This project demonstrates a complete workflow of an:
 
-- Data preparation  
-- Automated labeling  
-- Model evaluation  
-- Error analysis  
-- Data quality inspection  
+> 🎯 **AI Data Trainer / Data Analyst / Junior ML Role**
 
 ---
 
+## ⭐ Future Improvements
+
+- Add advanced NLP models (Transformers)  
+- Improve language detection  
+- Build interactive dashboard  
+
+---
+
+## 📌 Author
+
+**Nahian Bin Rahman**  
+🔗 GitHub: https://github.com/nahian-binrahman  
+
+---
+
+⭐ *If you found this useful, consider giving it a star!*
