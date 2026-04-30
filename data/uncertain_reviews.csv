@@ -1,0 +1,7 @@
+reviewID,date,verifiedPurchase,rating,helpful,title,review,country,helpful_aug,helpfulness_score,full_text,clean_text,weak_rating_label,predicted_label,sentiment_score,transformer_confidence,confidence,sarcasm_or_context_risk,mixed_sentiment_flag,rating_prediction_conflict,needs_human_review
+R1TIQVB9WPFA53,"December 26, 2025",True,5,,Exelente,Exelente,United States,0,5.21733092,Exelente Exelente,exelente exelente,positive,uncertain,0.0,0.0,low,True,False,True,True
+R1TIQVB9WPFA53,"December 26, 2025",True,5,,Exelente,Exelente,United States,0,4.832166251,Exelente Exelente,exelente exelente,positive,uncertain,0.0,0.0,low,True,False,True,True
+R1TIQVB9WPFA53,"December 26, 2025",True,5,,Exelente,Exelente,United States,0,4.060131874,Exelente Exelente,exelente exelente,positive,uncertain,0.0,0.0,low,True,False,True,True
+R1TIQVB9WPFA53,"December 26, 2025",True,5,,Exelente,Exelente,United States,0,3.584816543,Exelente Exelente,exelente exelente,positive,uncertain,0.0,0.0,low,True,False,True,True
+R1TIQVB9WPFA53,"December 26, 2025",True,5,,Exelente,Exelente,United States,1,5.910755516,Exelente Exelente,exelente exelente,positive,uncertain,0.0,0.0,low,True,False,True,True
+R1TIQVB9WPFA53,"December 26, 2025",True,5,,Exelente,Exelente,United States,1,5.137257453,Exelente Exelente,exelente exelente,positive,uncertain,0.0,0.0,low,True,False,True,True

@@ -1,46 +1,70 @@
+import sys
+from pathlib import Path
+
+# Add project root to Python path so config.py can be imported
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+sys.path.append(str(PROJECT_ROOT))
+
 import pandas as pd
-from textblob import TextBlob
 
-input_file = "data/processed_reviews.csv"
-output_file = "data/labeled_reviews.csv"
-
-
-def create_rating_label(rating):
-    """
-    Convert star rating into sentiment label.
-    4-5 = positive
-    3 = neutral
-    1-2 = negative
-    """
-    if rating >= 4:
-        return "positive"
-    elif rating <= 2:
-        return "negative"
-    else:
-        return "neutral"
+from config import PROCESSED_REVIEWS_FILE, LABELED_REVIEWS_FILE
+from src.sentiment_model import SentimentLabeler
 
 
-def create_predicted_label(text):
-    """
-    Use TextBlob to predict sentiment from clean text.
-    """
-    polarity = TextBlob(str(text)).sentiment.polarity
+def main():
+    df = pd.read_csv(PROCESSED_REVIEWS_FILE, engine="python", on_bad_lines="skip")
 
-    if polarity > 0.1:
-        return "positive"
-    elif polarity < -0.1:
-        return "negative"
-    else:
-        return "neutral"
+    labeler = SentimentLabeler()
+
+    df["weak_rating_label"] = df["rating"].apply(labeler.create_rating_label)
+
+    # Fast batch prediction instead of row-by-row prediction
+    predictions = labeler.predict_batch(df["clean_text"].tolist())
+
+    df[
+        [
+            "predicted_label",
+            "sentiment_score",
+            "transformer_confidence",
+            "confidence",
+            "sarcasm_or_context_risk",
+            "mixed_sentiment_flag",
+        ]
+    ] = pd.DataFrame(predictions, index=df.index)
+
+    df["rating_prediction_conflict"] = df["weak_rating_label"] != df["predicted_label"]
+
+    df["needs_human_review"] = (
+        df["rating_prediction_conflict"]
+        | (df["confidence"] == "low")
+        | (df["predicted_label"] == "uncertain")
+        | df["sarcasm_or_context_risk"]
+        | df["mixed_sentiment_flag"]
+    )
+
+    df.to_csv(LABELED_REVIEWS_FILE, index=False)
+
+    print("Labels created successfully.")
+    print(f"Input file: {PROCESSED_REVIEWS_FILE}")
+    print(f"Output file: {LABELED_REVIEWS_FILE}")
+    print(
+        df[
+            [
+                "rating",
+                "clean_text",
+                "weak_rating_label",
+                "predicted_label",
+                "sentiment_score",
+                "transformer_confidence",
+                "confidence",
+                "rating_prediction_conflict",
+                "sarcasm_or_context_risk",
+                "mixed_sentiment_flag",
+                "needs_human_review",
+            ]
+        ].head()
+    )
 
 
-df = pd.read_csv(input_file)
-
-df["rating_label"] = df["rating"].apply(create_rating_label)
-
-df["predicted_label"] = df["clean_text"].apply(create_predicted_label)
-
-df.to_csv(output_file, index=False)
-
-print("Labels created successfully.")
-print(df[["rating", "clean_text", "rating_label", "predicted_label"]].head())
+if __name__ == "__main__":
+    main()

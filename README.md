@@ -1,255 +1,338 @@
-# 📊 AI-Assisted Sentiment Labeling Pipeline with Ground Truth Validation and Error Analysis
+<h1 align="center">🚀AI-Powered Sentiment Labeling Pipeline</h1>
 
-## 🚀 What This Project Shows
+<p align="center">
+  <b>Human-in-the-Loop Sentiment Analysis System for Real-World AI Data Quality</b>
+</p>
 
-- Built a complete **AI data training pipeline**
-- Compared **AI predictions vs ground truth labels**
-- Identified **model weaknesses** such as non-English text and short reviews
-- Performed **real-world error analysis**
-
----
-
-## 🧭 Project Overview
-
-This project simulates the workflow of an **AI Data Trainer**.
-
-It processes raw customer reviews and performs:
-
-- Data cleaning
-- Sentiment labeling
-- AI evaluation
-- Error analysis
-- Data quality inspection
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10-blue?logo=python"/>
+  <img src="https://img.shields.io/badge/Pandas-Data%20Processing-purple?logo=pandas"/>
+  <img src="https://img.shields.io/badge/TextBlob-NLP-green"/>
+  <img src="https://img.shields.io/badge/VADER-Sentiment-orange"/>
+  <img src="https://img.shields.io/badge/LangDetect-Language-yellow"/>
+  <img src="https://img.shields.io/badge/Status-Advanced-brightgreen"/>
+  <img src="https://img.shields.io/badge/License-MIT-lightgrey"/>
+</p>
 
 ---
 
-## 🖼️ Demo
+## 🎯 Overview
 
-### Pipeline Output
+This project simulates a **real-world AI data labeling pipeline** used in production systems.
 
-![Pipeline Demo](assets/demo_pipeline.png)
+Instead of focusing only on model training, it focuses on the **entire data lifecycle**:
 
-### AI Mistake Example
+- From raw data → cleaned data → labeled data → validated data
 
-![Mismatch Example](assets/demo_mismatch.png)
+💡 The goal is simple:
 
-### Before → After → Label → Result
+> Build **high-quality labeled datasets**, not just models.
+
+---
+
+## ⚠️ Dataset Note
+
+- Uses a **small demo dataset**
+- Focus is on **workflow correctness**, not model accuracy
+
+---
+
+## 🔥 Key Features
+
+- 🧹 Data preprocessing & cleaning
+- 🏷️ Weak labeling from ratings
+- 🤖 Hybrid sentiment prediction (TextBlob + VADER)
+- ⚠️ Conflict detection (rating vs prediction)
+- 🧪 Evaluation with ML metrics
+- 🌍 Language detection & filtering
+- 🤝 Human-in-the-loop validation
+- ✅ Final high-quality dataset creation
+
+---
+
+## 🧠 Pipeline Overview
 
 ```text
-Before:
-"The product is AMAZING!!! 😍😍 <br>"
-
-After:
-"the product is amazing"
-
-rating_label: positive
-predicted_label: positive
-
-Result: Match ✅
-```
-
-### AI Mistake Example
-
-```text
-Text:
-"excelentes a mi esposo le encantan"
-
-rating_label: positive
-predicted_label: neutral
-
-Result: Mismatch ❌
-Reason: Non-English text
+Raw Reviews
+   ↓
+Clean Text
+   ↓
+Weak Label (Rating)
+   ↓
+AI Prediction
+   ↓
+Conflict Detection
+   ↓
+Evaluation
+   ↓
+Language Detection
+   ↓
+Human Review (HITL)
+   ↓
+Final Approved Labels
 ```
 
 ---
 
-## 🛠️ Tech Stack
+## 🧩 Problem → Solution → Outcome
 
-- 🐍 Python
-- 📦 Pandas
-- 🧠 TextBlob
-- 💻 VS Code + Git Bash
+### ❗ Problem
+
+Ratings are often **noisy and unreliable**.
+
+### 💡 Solution
+
+Combine:
+
+- Weak labels (ratings)
+- AI predictions
+- Human validation
+
+### 🎯 Outcome
+
+A **reliable labeled dataset** ready for real-world AI use.
+
+---
+
+## 🏷️ Weak Labeling Strategy
+
+Ratings are treated as **weak signals**, not ground truth.
+
+| Rating | Label    |
+| ------ | -------- |
+| 4–5 ⭐ | positive |
+| 3 ⭐   | neutral  |
+| 1–2 ⭐ | negative |
+
+💡 Stored as: `weak_rating_label`
+
+---
+
+## 🤖 Hybrid Sentiment Model
+
+Uses multiple signals:
+
+- **TextBlob** → polarity
+- **VADER** → rule-based scoring
+- Custom logic for:
+  - `but`, `however`, `although`
+
+📌 Example:
+
+> “Nice design, **but** it broke after 2 days”
+
+→ Negative dominates after "but"
+
+---
+
+## ⚠️ Conflict Detection
+
+Compares:
+
+```
+weak_rating_label vs predicted_label
+```
+
+If mismatch:
+
+```
+rating_prediction_conflict = True
+```
+
+These cases are flagged for review.
+
+---
+
+## 🧪 Uncertainty Handling
+
+Some reviews are unclear → marked as:
+
+```
+uncertain
+```
+
+📁 Saved in:
+
+```
+data/uncertain_reviews.csv
+```
+
+Handled separately to **avoid noisy labels**.
+
+---
+
+## 🤝 Human-in-the-Loop (HITL)
+
+Triggered when:
+
+- Conflict exists
+- Low confidence
+- Ambiguous text
+
+Human adds:
+
+```
+human_label
+```
+
+---
+
+## ✅ Final Label Logic
+
+Priority system:
+
+```
+Human > AI > Rating
+```
+
+```text
+If human_label:
+    final_label = human_label
+Else:
+    final_label = predicted_label
+```
+
+---
+
+## 📊 Evaluation Metrics
+
+- Accuracy
+- Precision (weighted)
+- Recall (weighted)
+- F1 Score
+- Confusion Matrix
+
+⚠️ Note: Dataset is **imbalanced (more positives)**
+
+---
+
+## 🌍 Language Detection
+
+Classifies reviews into:
+
+- english
+- non_english
+- unknown
+
+Helps improve model reliability.
+
+---
+
+## 📸 Visual Outputs
+
+### 📊 Label Distribution
+
+![Label Distribution](assets/label_distribution.png)
+
+### 📉 Agreement vs Conflict
+
+![Agreement](assets/match_vs_mismatch.png)
+
+---
+
+## 🔍 Example Output
+
+| Clean Text         | Weak     | Predicted | Match |
+| ------------------ | -------- | --------- | ----- |
+| excelente producto | positive | neutral   | ❌    |
+| great product      | positive | positive  | ✅    |
+
+---
+
+## 🛠 Tech Stack
+
+| Tool         | Purpose         |
+| ------------ | --------------- |
+| Python       | Core            |
+| Pandas       | Data processing |
+| TextBlob     | Sentiment       |
+| VADER        | Sentiment       |
+| LangDetect   | Language        |
+| Scikit-learn | Metrics         |
+| Matplotlib   | Visualization   |
 
 ---
 
 ## 📁 Project Structure
 
 ```text
-ai-review-labeling-pipeline/
-│
+ai-data-trainer-pipeline/
 ├── data/
-│   ├── raw_reviews.csv
-│   ├── portfolio_final_reviews.csv
-│   ├── portfolio_mismatch_report.csv
-│   └── portfolio_summary_report.csv
-│
+├── docs/
 ├── src/
-│   ├── 01_load_and_select.py
-│   ├── 02_prepare_text.py
-│   ├── 03_clean_text.py
-│   ├── 04_create_labels.py
-│   ├── 05_compare_labels.py
-│   ├── 06_analyze_mistakes.py
-│   ├── 06b_add_mistake_reasons.py
-│   ├── 07_detect_language_issues.py
-│   ├── 07b_create_english_only_dataset.py
-│   └── 08_export_reports.py
-│
 ├── assets/
-├── README.md
-└── requirements.txt
+├── requirements.txt
+└── README.md
 ```
 
 ---
 
-## ⚙️ Pipeline Workflow
-
-### 🧹 1. Data Selection
-- Removed unnecessary columns  
-- Kept useful features  
-
-### 🧩 2. Text Preparation
-- Combined `title + review`  
-- Handled missing values  
-
-### 🧼 3. Text Cleaning
-- Removed HTML tags (`<br>`)  
-- Removed special characters and URLs  
-- Converted text to lowercase  
-
----
-
-### 🧠 4. Sentiment Labeling
-
-#### Ground Truth (Rating-Based)
-
-| Rating | Label |
-|--------|------|
-| 4–5 | Positive |
-| 3 | Neutral |
-| 1–2 | Negative |
-
-#### AI Prediction (TextBlob)
-
-- Uses text polarity  
-- Outputs: positive / neutral / negative  
-
----
-
-### 🔍 5. Label Comparison
-
-Created:
-
-```text
-label_match
-```
-
-Checks:
-
-```text
-rating_label == predicted_label
-```
-
----
-
-### 📉 6. Error Analysis
-
-Extracted mismatched rows:
-
-```text
-portfolio_mismatch_report.csv
-```
-
----
-
-### 🌍 7. Language Detection
-
-Added:
-
-```text
-language_flag
-```
-
-Values:
-- `english_or_unknown`
-- `possible_non_english`
-
----
-
-### 📊 8. Final Outputs
-
-- 📄 `portfolio_final_reviews.csv` → full dataset  
-- ⚠️ `portfolio_mismatch_report.csv` → AI mistakes  
-- 📈 `portfolio_summary_report.csv` → summary metrics  
-
----
-
-## 📊 Sample Insight
-
-```text
-Text: excelentes a mi esposo le encantan
-Rating: 5 (positive)
-AI Prediction: neutral ❌
-Reason: Non-English text
-```
-
----
-
-## 📊 Results
-
-### Label Distribution
-![Label Distribution](assets/label_distribution.png)
-
-### Prediction Accuracy
-![Prediction Accuracy](assets/match_vs_mismatch.png)
-
-## 💡 Key Learnings
-
-- Data quality directly impacts AI performance  
-- Non-English text reduces accuracy  
-- Rating labels act as ground truth  
-- Error analysis is critical in AI workflows  
-
----
-
-## 🎯 Skills Demonstrated
-
-- 🧹 Data cleaning & preprocessing  
-- 🏷️ Automated labeling  
-- 🔍 AI evaluation  
-- ⚠️ Error analysis  
-- 📊 Dataset quality assessment  
-
----
-
-## 🚀 How to Run
+## ⚙️ Installation
 
 ```bash
 pip install -r requirements.txt
 ```
 
+---
+
+## ▶️ Run Pipeline
+
 ```bash
-python src/01_load_and_select.py
-python src/02_prepare_text.py
-python src/03_clean_text.py
-python src/04_create_labels.py
-python src/05_compare_labels.py
-python src/06_analyze_mistakes.py
-python src/07_detect_language_issues.py
-python src/08_export_reports.py
+python run_pipeline.py
 ```
 
 ---
 
-## 🏁 Final Result
+## 📊 Outputs
 
-This project demonstrates a complete workflow of an **AI Data Trainer**, including:
-
-- Data preparation  
-- Automated labeling  
-- Model evaluation  
-- Error analysis  
-- Data quality inspection  
+- final_reviews.csv
+- uncertain_reviews.csv
+- rating_prediction_conflicts.csv
+- evaluation_metrics.csv
+- final_approved_reviews.csv
 
 ---
 
+## 💡 Key Learnings
+
+- Real-world data is noisy
+- Ratings ≠ truth
+- Hybrid models perform better
+- Human validation is essential
+- Error analysis improves systems
+
+---
+
+## 🎯 Skills Demonstrated
+
+- Data preprocessing
+- Weak labeling
+- NLP sentiment analysis
+- Model evaluation
+- HITL system design
+- AI data quality workflows
+
+---
+
+## 🏁 Final Outcome
+
+A **production-style AI pipeline** that:
+
+- Handles noisy labels
+- Detects conflicts
+- Uses hybrid models
+- Integrates human review
+- Produces high-quality datasets
+
+---
+
+## 👤 Author
+
+**Nahian Bin Rahman**
+🔗 https://github.com/nahian-binrahman
+
+---
+
+<p align="center">
+⭐ If you found this useful, consider giving it a star!
+</p>

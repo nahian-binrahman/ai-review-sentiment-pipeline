@@ -1,0 +1,19 @@
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parent
+
+DATA_DIR = PROJECT_ROOT / "data"
+ASSETS_DIR = PROJECT_ROOT / "assets"
+
+PROCESSED_REVIEWS_FILE = DATA_DIR / "processed_reviews.csv"
+LABELED_REVIEWS_FILE = DATA_DIR / "labeled_reviews.csv"
+
+TRANSFORMER_MODEL_NAME = "cardiffnlp/twitter-roberta-base-sentiment-latest"
+
+TRANSFORMER_BATCH_SIZE = 16
+
+SHORT_TEXT_WORD_LIMIT = 2
+LOW_CONFIDENCE_THRESHOLD = 0.45
+HIGH_CONFIDENCE_THRESHOLD = 0.75
+MEDIUM_CONFIDENCE_THRESHOLD = 0.55
+RULE_STRENGTH_THRESHOLD = 0.3

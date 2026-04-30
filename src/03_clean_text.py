@@ -5,6 +5,7 @@ import html
 input_file = "data/prepared_reviews.csv"
 output_file = "data/processed_reviews.csv"
 
+
 def clean_text(text):
     text = str(text)
 
@@ -26,7 +27,8 @@ def clean_text(text):
 
     return text
 
-df = pd.read_csv(input_file)
+
+df = pd.read_csv(input_file, engine="python", on_bad_lines="skip")
 
 df["clean_text"] = df["full_text"].apply(clean_text)
 

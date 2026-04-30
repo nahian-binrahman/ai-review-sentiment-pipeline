@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Data Labeling Pipeline with Human-in-the-Loop Validation</title>
+  <meta name="description" content="A premium HTML README page for an AI data labeling pipeline with weak labeling, AI sentiment prediction, conflict detection, and human-in-the-loop validation." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
+            mono: ['JetBrains Mono', 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'monospace']
+          },
+          boxShadow: {
+            glow: '0 0 60px rgba(59, 130, 246, 0.22)',
+            premium: '0 24px 80px rgba(15, 23, 42, 0.14)'
+          },
+          animation: {
+            float: 'float 7s ease-in-out infinite',
+            pulseSoft: 'pulseSoft 4s ease-in-out infinite'
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-16px)' }
+            },
+            pulseSoft: {
+              '0%, 100%': { opacity: '0.65' },
+              '50%': { opacity: '1' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-100 antialiased selection:bg-cyan-400 selection:text-slate-950">
+  <div class="pointer-events-none fixed inset-0 overflow-hidden">
+    <div class="absolute -top-40 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-cyan-500/20 blur-3xl"></div>
+    <div class="absolute top-40 -left-24 h-80 w-80 rounded-full bg-indigo-500/20 blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 h-[28rem] w-[28rem] rounded-full bg-fuchsia-500/10 blur-3xl"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_35%),linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:100%_100%,52px_52px,52px_52px]"></div>
+  </div>
+
+  <header class="relative overflow-hidden border-b border-white/10">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-8">
+      <a href="#top" class="group inline-flex items-center gap-3">
+        <span class="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-cyan-400 to-indigo-500 shadow-glow">🤖</span>
+        <span>
+          <span class="block text-sm font-semibold uppercase tracking-[0.25em] text-cyan-200">AI Data Trainer</span>
+          <span class="block text-xs text-slate-400">Human-in-the-Loop Pipeline</span>
+        </span>
+      </a>
+      <div class="hidden items-center gap-6 text-sm text-slate-300 md:flex">
+        <a href="#pipeline" class="hover:text-cyan-200">Pipeline</a>
+        <a href="#evaluation" class="hover:text-cyan-200">Evaluation</a>
+        <a href="#outputs" class="hover:text-cyan-200">Outputs</a>
+        <a href="#run" class="hover:text-cyan-200">Run</a>
+      </div>
+    </nav>
+
+    <section id="top" class="mx-auto grid max-w-7xl items-center gap-12 px-6 pb-20 pt-12 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:pb-28 lg:pt-20">
+      <div>
+        <div class="mb-6 inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-sm font-medium text-cyan-100 shadow-glow">
+          🚀 Advanced NLP labeling workflow for real-world AI data quality
+        </div>
+        <h1 class="max-w-5xl text-4xl font-black tracking-tight text-white sm:text-6xl lg:text-7xl">
+          AI Data Labeling Pipeline with <span class="bg-gradient-to-r from-cyan-200 via-blue-300 to-indigo-300 bg-clip-text text-transparent">Human-in-the-Loop</span> Validation
+        </h1>
+        <p class="mt-7 max-w-3xl text-lg leading-8 text-slate-300">
+          This project simulates a real-world AI Data Trainer workflow for sentiment analysis. It focuses on the entire data lifecycle: preprocessing, weak labeling, AI prediction, conflict detection, evaluation, language detection, human review, and final approved dataset creation.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <img class="h-7 rounded" src="https://img.shields.io/badge/Python-3.10-blue?logo=python" alt="Python 3.10 badge" />
+          <img class="h-7 rounded" src="https://img.shields.io/badge/Pandas-Data%20Processing-purple?logo=pandas" alt="Pandas badge" />
+          <img class="h-7 rounded" src="https://img.shields.io/badge/TextBlob-NLP-green" alt="TextBlob badge" />
+          <img class="h-7 rounded" src="https://img.shields.io/badge/VADER-Sentiment-orange" alt="VADER badge" />
+          <img class="h-7 rounded" src="https://img.shields.io/badge/LangDetect-Language-yellow" alt="LangDetect badge" />
+          <img class="h-7 rounded" src="https://img.shields.io/badge/Status-Advanced-brightgreen" alt="Status badge" />
+          <img class="h-7 rounded" src="https://img.shields.io/badge/License-MIT-lightgrey" alt="MIT license badge" />
+        </div>
+
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a href="#run" class="rounded-2xl bg-cyan-300 px-6 py-3 text-sm font-bold text-slate-950 shadow-glow transition hover:-translate-y-0.5 hover:bg-cyan-200">Run the Pipeline</a>
+          <a href="#pipeline" class="rounded-2xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-bold text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/10">Explore Workflow</a>
+        </div>
+      </div>
+
+      <div class="relative animate-float">
+        <div class="absolute -inset-4 rounded-[2rem] bg-gradient-to-r from-cyan-400/20 to-indigo-500/20 blur-2xl"></div>
+        <div class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] p-6 shadow-premium backdrop-blur-xl">
+          <div class="mb-5 flex items-center gap-2">
+            <span class="h-3 w-3 rounded-full bg-red-400"></span>
+            <span class="h-3 w-3 rounded-full bg-yellow-400"></span>
+            <span class="h-3 w-3 rounded-full bg-green-400"></span>
+            <span class="ml-2 text-xs text-slate-400">pipeline.preview</span>
+          </div>
+          <pre class="overflow-x-auto rounded-2xl bg-slate-950/80 p-5 text-sm leading-7 text-cyan-100"><code>Raw Reviews
+  ↓
+Clean & Prepare Text
+  ↓
+Weak Label from rating
+  ↓
+AI Prediction from text
+  ↓
+Conflict Detection
+  ↓
+Evaluation & Analysis
+  ↓
+Language Detection
+  ↓
+Human Review HITL
+  ↓
+Final Approved Labels</code></pre>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main class="relative mx-auto max-w-7xl px-6 py-16 lg:px-8">
+    <section class="grid gap-6 md:grid-cols-3">
+      <article class="rounded-3xl border border-white/10 bg-white/[0.06] p-7 shadow-premium backdrop-blur">
+        <div class="mb-4 text-3xl">❗</div>
+        <h2 class="text-xl font-bold text-white">Problem</h2>
+        <p class="mt-3 text-slate-300">Customer ratings are often unreliable and do not always match the actual review text.</p>
+      </article>
+      <article class="rounded-3xl border border-white/10 bg-white/[0.06] p-7 shadow-premium backdrop-blur">
+        <div class="mb-4 text-3xl">💡</div>
+        <h2 class="text-xl font-bold text-white">Solution</h2>
+        <p class="mt-3 text-slate-300">Use weak labeling from ratings, AI-based sentiment prediction, and human-in-the-loop validation.</p>
+      </article>
+      <article class="rounded-3xl border border-white/10 bg-white/[0.06] p-7 shadow-premium backdrop-blur">
+        <div class="mb-4 text-3xl">🎯</div>
+        <h2 class="text-xl font-bold text-white">Outcome</h2>
+        <p class="mt-3 text-slate-300">A high-quality, reliable labeled dataset suitable for real-world AI systems.</p>
+      </article>
+    </section>
+
+    <section class="mt-16 rounded-[2rem] border border-amber-300/20 bg-amber-300/10 p-8 shadow-premium">
+      <h2 class="text-2xl font-black text-amber-100">⚠️ Dataset Note</h2>
+      <p class="mt-4 text-slate-200">This project uses a small dataset for demonstration purposes. The goal is to simulate a real-world AI data labeling pipeline, not to achieve production-level model performance. Results should be interpreted as workflow validation, not final model accuracy.</p>
+    </section>
+
+    <section class="mt-16" id="pipeline">
+      <div class="mb-8 max-w-3xl">
+        <p class="text-sm font-bold uppercase tracking-[0.3em] text-cyan-200">Core Pipeline</p>
+        <h2 class="mt-3 text-3xl font-black text-white sm:text-5xl">From noisy reviews to approved labels</h2>
+      </div>
+      <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <div class="rounded-3xl border border-white/10 bg-slate-900/70 p-6"><span class="text-2xl">🧹</span><h3 class="mt-4 font-bold text-white">Preprocess</h3><p class="mt-2 text-sm text-slate-300">Data preprocessing and cleaning.</p></div>
+        <div class="rounded-3xl border border-white/10 bg-slate-900/70 p-6"><span class="text-2xl">🏷️</span><h3 class="mt-4 font-bold text-white">Weak Label</h3><p class="mt-2 text-sm text-slate-300">Rating-based reference labels.</p></div>
+        <div class="rounded-3xl border border-white/10 bg-slate-900/70 p-6"><span class="text-2xl">🤖</span><h3 class="mt-4 font-bold text-white">AI Predict</h3><p class="mt-2 text-sm text-slate-300">TextBlob, VADER, and contrast-aware logic.</p></div>
+        <div class="rounded-3xl border border-white/10 bg-slate-900/70 p-6"><span class="text-2xl">🧑‍⚖️</span><h3 class="mt-4 font-bold text-white">Human Review</h3><p class="mt-2 text-sm text-slate-300">HITL validation for difficult cases.</p></div>
+      </div>
+    </section>
+
+    <section class="mt-16 grid gap-8 lg:grid-cols-2">
+      <article class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-8 shadow-premium backdrop-blur">
+        <h2 class="text-3xl font-black text-white">🏷️ Weak Labeling Strategy</h2>
+        <p class="mt-4 text-slate-300">This project does not treat ratings as perfect ground truth. In real-world customer review data, star ratings can be noisy. A high rating can include a complaint, and a low rating may reflect delivery instead of product sentiment.</p>
+        <div class="mt-6 overflow-hidden rounded-2xl border border-white/10">
+          <table class="w-full text-left text-sm">
+            <thead class="bg-white/10 text-cyan-100"><tr><th class="p-4">Rating</th><th class="p-4">Review Text</th><th class="p-4">Why It Is Noisy</th></tr></thead>
+            <tbody class="divide-y divide-white/10 text-slate-300">
+              <tr><td class="p-4">⭐⭐⭐⭐⭐</td><td class="p-4">Good product, but it broke after one week.</td><td class="p-4">Rating is positive, but text has a negative issue.</td></tr>
+              <tr><td class="p-4">⭐</td><td class="p-4">The product is fine, but delivery was terrible.</td><td class="p-4">Rating may reflect delivery, not product sentiment.</td></tr>
+              <tr><td class="p-4">⭐⭐⭐</td><td class="p-4">Works perfectly for my needs.</td><td class="p-4">Rating is neutral, but text sounds positive.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <pre class="mt-6 overflow-x-auto rounded-2xl bg-slate-950 p-5 text-sm text-cyan-100"><code>4-5 stars → positive
+3 stars   → neutral
+1-2 stars → negative
+
+Stored as: weak_rating_label</code></pre>
+      </article>
+
+      <article class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-8 shadow-premium backdrop-blur">
+        <h2 class="text-3xl font-black text-white">🤖 AI Sentiment Model</h2>
+        <p class="mt-4 text-slate-300">The project uses a hybrid sentiment analysis approach instead of depending on one tool.</p>
+        <ul class="mt-6 space-y-3 text-slate-300">
+          <li class="rounded-2xl bg-white/5 p-4">✅ TextBlob for polarity-based sentiment</li>
+          <li class="rounded-2xl bg-white/5 p-4">✅ VADER for rule-based sentiment scoring</li>
+          <li class="rounded-2xl bg-white/5 p-4">✅ Custom contrast-word logic for <code class="text-cyan-200">but</code>, <code class="text-cyan-200">however</code>, and <code class="text-cyan-200">although</code></li>
+        </ul>
+        <div class="mt-6 rounded-2xl border border-cyan-300/20 bg-cyan-300/10 p-5">
+          <p class="font-semibold text-cyan-100">Example</p>
+          <code class="mt-3 block text-slate-200">Nice design, but it stopped working after two days.</code>
+          <p class="mt-3 text-sm text-slate-300">The system gives more importance to the text after <strong>but</strong>, because that part usually contains the stronger final opinion.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="mt-16 grid gap-8 lg:grid-cols-3">
+      <article class="rounded-[2rem] border border-white/10 bg-slate-900/70 p-8 shadow-premium lg:col-span-2">
+        <h2 class="text-3xl font-black text-white">⚠️ Rating-Prediction Conflict Detection</h2>
+        <p class="mt-4 text-slate-300">After creating the weak rating label and the AI prediction, the system compares them.</p>
+        <pre class="mt-6 overflow-x-auto rounded-2xl bg-slate-950 p-5 text-sm text-cyan-100"><code>weak_rating_label vs predicted_label
+
+rating_prediction_conflict = True</code></pre>
+        <blockquote class="mt-6 rounded-2xl border-l-4 border-cyan-300 bg-white/5 p-5 text-slate-200">The rating signal and the review text signal disagree, so the row should be reviewed carefully.</blockquote>
+      </article>
+      <article class="rounded-[2rem] border border-white/10 bg-slate-900/70 p-8 shadow-premium">
+        <h2 class="text-3xl font-black text-white">🧪 Uncertainty</h2>
+        <p class="mt-4 text-slate-300">Some reviews do not contain enough clear information for confident prediction. The system marks these as <code class="text-cyan-200">uncertain</code> and stores them in <code class="text-cyan-200">data/uncertain_reviews.csv</code>.</p>
+      </article>
+    </section>
+
+    <section class="mt-16 rounded-[2rem] border border-white/10 bg-gradient-to-br from-indigo-500/10 to-cyan-400/10 p-8 shadow-premium">
+      <h2 class="text-3xl font-black text-white">🔁 Human-in-the-Loop Validation</h2>
+      <p class="mt-4 max-w-4xl text-slate-300">Rows are sent to human review when rating and prediction conflict, prediction confidence is low, prediction is uncertain, or text is unclear or hard to judge. The human reviewer can add a <code class="text-cyan-200">human_label</code>.</p>
+      <div class="mt-8 grid gap-5 md:grid-cols-3">
+        <div class="rounded-2xl bg-white/5 p-5"><p class="text-sm text-slate-400">Priority 1</p><h3 class="mt-2 text-xl font-bold text-white">Human label</h3></div>
+        <div class="rounded-2xl bg-white/5 p-5"><p class="text-sm text-slate-400">Priority 2</p><h3 class="mt-2 text-xl font-bold text-white">AI prediction</h3></div>
+        <div class="rounded-2xl bg-white/5 p-5"><p class="text-sm text-slate-400">Priority 3</p><h3 class="mt-2 text-xl font-bold text-white">Rating weak signal</h3></div>
+      </div>
+      <pre class="mt-6 overflow-x-auto rounded-2xl bg-slate-950 p-5 text-sm text-cyan-100"><code>If human_label exists:
+    final_label = human_label
+Else:
+    final_label = predicted_label</code></pre>
+    </section>
+
+    <section class="mt-16" id="evaluation">
+      <div class="mb-8 max-w-3xl">
+        <p class="text-sm font-bold uppercase tracking-[0.3em] text-cyan-200">Evaluation</p>
+        <h2 class="mt-3 text-3xl font-black text-white sm:text-5xl">Metrics, error analysis, and language detection</h2>
+      </div>
+      <div class="grid gap-8 lg:grid-cols-3">
+        <article class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-8 shadow-premium">
+          <h3 class="text-2xl font-bold text-white">📊 Evaluation Metrics</h3>
+          <ul class="mt-5 space-y-3 text-slate-300">
+            <li>Accuracy</li><li>Precision weighted</li><li>Recall weighted</li><li>F1 Score weighted</li><li>Confusion Matrix</li><li>Classification Report</li>
+          </ul>
+          <p class="mt-5 rounded-2xl bg-amber-300/10 p-4 text-sm text-amber-100">The dataset is skewed toward positive reviews, which can impact precision, recall, and F1 score for neutral and negative classes.</p>
+        </article>
+        <article class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-8 shadow-premium">
+          <h3 class="text-2xl font-bold text-white">⚠️ Error Analysis</h3>
+          <ul class="mt-5 space-y-3 text-slate-300">
+            <li>Non-English text</li><li>Unknown language</li><li>Very short text</li><li>Mixed sentiment</li><li>Sarcasm or context conflict</li><li>Missed positive or negative sentiment</li><li>Neutral over-interpretation</li>
+          </ul>
+        </article>
+        <article class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-8 shadow-premium">
+          <h3 class="text-2xl font-bold text-white">🌍 Language Detection</h3>
+          <p class="mt-5 text-slate-300">The system uses <code class="text-cyan-200">langdetect</code> to identify each review as English, non-English, or unknown.</p>
+          <pre class="mt-6 overflow-x-auto rounded-2xl bg-slate-950 p-5 text-sm text-cyan-100"><code>english
+non_english
+unknown</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section class="mt-16">
+      <div class="mb-8 max-w-3xl">
+        <p class="text-sm font-bold uppercase tracking-[0.3em] text-cyan-200">Visual Outputs</p>
+        <h2 class="mt-3 text-3xl font-black text-white sm:text-5xl">Charts and sample results</h2>
+      </div>
+      <div class="grid gap-8 lg:grid-cols-2">
+        <figure class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-6 shadow-premium">
+          <h3 class="text-xl font-bold text-white">📊 Label Distribution</h3>
+          <p class="mt-2 text-sm text-slate-300">Shows how many reviews fall into each sentiment category based on rating labels.</p>
+          <img src="assets/label_distribution.png" alt="Label Distribution" class="mt-5 w-full rounded-2xl border border-white/10 bg-slate-900 object-cover" />
+        </figure>
+        <figure class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-6 shadow-premium">
+          <h3 class="text-xl font-bold text-white">📉 Agreement with Weak Rating Labels</h3>
+          <p class="mt-2 text-sm text-slate-300">Measures agreement with weak rating labels, not true model accuracy.</p>
+          <img src="assets/match_vs_mismatch.png" alt="Agreement vs Conflict" class="mt-5 w-full rounded-2xl border border-white/10 bg-slate-900 object-cover" />
+        </figure>
+      </div>
+
+      <article class="mt-8 rounded-[2rem] border border-white/10 bg-white/[0.06] p-8 shadow-premium">
+        <h3 class="text-2xl font-bold text-white">🔍 Sample Pipeline Output</h3>
+        <div class="mt-6 overflow-hidden rounded-2xl border border-white/10">
+          <table class="w-full text-left text-sm">
+            <thead class="bg-white/10 text-cyan-100"><tr><th class="p-4">Clean Text</th><th class="p-4">Weak Label</th><th class="p-4">Predicted Label</th><th class="p-4">Match</th></tr></thead>
+            <tbody class="divide-y divide-white/10 text-slate-300">
+              <tr><td class="p-4">excelentes a mi esposo le encantan</td><td class="p-4">positive</td><td class="p-4">neutral</td><td class="p-4">❌</td></tr>
+              <tr><td class="p-4">best action adventure capturing device</td><td class="p-4">positive</td><td class="p-4">positive</td><td class="p-4">✅</td></tr>
+              <tr><td class="p-4">great everything thing was great for this order</td><td class="p-4">positive</td><td class="p-4">positive</td><td class="p-4">✅</td></tr>
+              <tr><td class="p-4">todo funciona bien y cumple con lo esperado</td><td class="p-4">positive</td><td class="p-4">neutral</td><td class="p-4">❌</td></tr>
+              <tr><td class="p-4">excelente accesorio excelente accesorio</td><td class="p-4">positive</td><td class="p-4">neutral</td><td class="p-4">❌</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="mt-8 rounded-[2rem] border border-red-300/20 bg-red-300/10 p-8 shadow-premium">
+        <h3 class="text-2xl font-bold text-red-100">⚠️ Mismatch / Conflict Examples</h3>
+        <p class="mt-3 text-slate-300">These mismatches indicate disagreement between rating-based labels and text-based predictions, and are sent for human review.</p>
+        <div class="mt-6 overflow-hidden rounded-2xl border border-white/10">
+          <table class="w-full text-left text-sm">
+            <thead class="bg-white/10 text-red-100"><tr><th class="p-4">Clean Text</th><th class="p-4">Weak Label</th><th class="p-4">Predicted</th><th class="p-4">Match</th></tr></thead>
+            <tbody class="divide-y divide-white/10 text-slate-300">
+              <tr><td class="p-4">excelentes a mi esposo le encantan</td><td class="p-4">positive</td><td class="p-4">neutral</td><td class="p-4">❌</td></tr>
+              <tr><td class="p-4">todo funciona bien y cumple con lo esperado</td><td class="p-4">positive</td><td class="p-4">neutral</td><td class="p-4">❌</td></tr>
+              <tr><td class="p-4">excelente accesorio excelente accesorio</td><td class="p-4">positive</td><td class="p-4">neutral</td><td class="p-4">❌</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <pre class="mt-6 overflow-x-auto rounded-2xl bg-slate-950 p-5 text-sm text-red-100"><code>weak_rating_label ≠ predicted_label</code></pre>
+      </article>
+    </section>
+
+    <section class="mt-16 grid gap-8 lg:grid-cols-2">
+      <article class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-8 shadow-premium">
+        <h2 class="text-3xl font-black text-white">🛠️ Tech Stack</h2>
+        <div class="mt-6 overflow-hidden rounded-2xl border border-white/10">
+          <table class="w-full text-left text-sm">
+            <thead class="bg-white/10 text-cyan-100"><tr><th class="p-4">Tool</th><th class="p-4">Purpose</th></tr></thead>
+            <tbody class="divide-y divide-white/10 text-slate-300">
+              <tr><td class="p-4">Python</td><td class="p-4">Core programming</td></tr>
+              <tr><td class="p-4">Pandas</td><td class="p-4">Data processing</td></tr>
+              <tr><td class="p-4">TextBlob</td><td class="p-4">Sentiment polarity</td></tr>
+              <tr><td class="p-4">VADER</td><td class="p-4">Rule-based sentiment</td></tr>
+              <tr><td class="p-4">LangDetect</td><td class="p-4">Language detection</td></tr>
+              <tr><td class="p-4">Scikit-learn</td><td class="p-4">Evaluation metrics</td></tr>
+              <tr><td class="p-4">Matplotlib</td><td class="p-4">Visualization</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+      <article class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-8 shadow-premium">
+        <h2 class="text-3xl font-black text-white">📁 Project Structure</h2>
+        <pre class="mt-6 overflow-x-auto rounded-2xl bg-slate-950 p-5 text-sm leading-7 text-cyan-100"><code>ai-data-trainer-pipeline/
+│
+├── data/
+├── docs/
+│   └── annotation_guidelines.md
+├── src/
+├── assets/
+├── requirements.txt
+└── README.md</code></pre>
+      </article>
+    </section>
+
+    <section id="run" class="mt-16 rounded-[2rem] border border-white/10 bg-slate-900/80 p-8 shadow-premium">
+      <h2 class="text-3xl font-black text-white">⚙️ How to Run</h2>
+      <div class="mt-8 grid gap-6 lg:grid-cols-2">
+        <div>
+          <h3 class="text-xl font-bold text-white">Install dependencies</h3>
+          <pre class="mt-4 overflow-x-auto rounded-2xl bg-slate-950 p-5 text-sm text-cyan-100"><code>pip install -r requirements.txt</code></pre>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold text-white">▶️ Run the Pipeline</h3>
+          <pre class="mt-4 overflow-x-auto rounded-2xl bg-slate-950 p-5 text-sm text-cyan-100"><code>python run_pipeline.py</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="outputs" class="mt-16 grid gap-8 lg:grid-cols-2">
+      <article class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-8 shadow-premium">
+        <h2 class="text-3xl font-black text-white">📊 Outputs</h2>
+        <div class="mt-6 grid gap-3 sm:grid-cols-2">
+          <code class="rounded-2xl bg-white/5 p-3 text-cyan-100">final_reviews.csv</code>
+          <code class="rounded-2xl bg-white/5 p-3 text-cyan-100">uncertain_reviews.csv</code>
+          <code class="rounded-2xl bg-white/5 p-3 text-cyan-100">rating_prediction_conflicts.csv</code>
+          <code class="rounded-2xl bg-white/5 p-3 text-cyan-100">mistake_analysis_report.csv</code>
+          <code class="rounded-2xl bg-white/5 p-3 text-cyan-100">evaluation_metrics.csv</code>
+          <code class="rounded-2xl bg-white/5 p-3 text-cyan-100">confusion_matrix.csv</code>
+          <code class="rounded-2xl bg-white/5 p-3 text-cyan-100">classification_report.csv</code>
+          <code class="rounded-2xl bg-white/5 p-3 text-cyan-100">human_review_queue.csv</code>
+          <code class="rounded-2xl bg-white/5 p-3 text-cyan-100 sm:col-span-2">final_approved_reviews.csv</code>
+        </div>
+      </article>
+      <article class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-8 shadow-premium">
+        <h2 class="text-3xl font-black text-white">💡 Key Learnings</h2>
+        <ul class="mt-6 space-y-3 text-slate-300">
+          <li>Real-world data is noisy</li>
+          <li>Ratings are not always reliable</li>
+          <li>Hybrid models improve sentiment accuracy</li>
+          <li>Language issues impact NLP performance</li>
+          <li>Human review is essential for quality</li>
+          <li>Error analysis reveals system weaknesses</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="mt-16 grid gap-8 lg:grid-cols-2">
+      <article class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-8 shadow-premium">
+        <h2 class="text-3xl font-black text-white">🎯 Skills Demonstrated</h2>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <span class="rounded-full bg-cyan-300/10 px-4 py-2 text-sm text-cyan-100">Data preprocessing</span>
+          <span class="rounded-full bg-cyan-300/10 px-4 py-2 text-sm text-cyan-100">Weak labeling</span>
+          <span class="rounded-full bg-cyan-300/10 px-4 py-2 text-sm text-cyan-100">Sentiment analysis</span>
+          <span class="rounded-full bg-cyan-300/10 px-4 py-2 text-sm text-cyan-100">Model evaluation</span>
+          <span class="rounded-full bg-cyan-300/10 px-4 py-2 text-sm text-cyan-100">Error analysis</span>
+          <span class="rounded-full bg-cyan-300/10 px-4 py-2 text-sm text-cyan-100">Language detection</span>
+          <span class="rounded-full bg-cyan-300/10 px-4 py-2 text-sm text-cyan-100">HITL design</span>
+          <span class="rounded-full bg-cyan-300/10 px-4 py-2 text-sm text-cyan-100">AI data quality workflows</span>
+        </div>
+      </article>
+      <article class="rounded-[2rem] border border-cyan-300/20 bg-cyan-300/10 p-8 shadow-glow">
+        <h2 class="text-3xl font-black text-white">🏁 Final Outcome</h2>
+        <p class="mt-4 text-slate-200">A realistic AI data pipeline that handles noisy labels, uses hybrid sentiment modeling, detects conflicts and uncertainty, integrates human validation, and produces a high-quality final dataset.</p>
+        <p class="mt-5 text-slate-300">This pipeline focuses on data quality and labeling reliability, which are critical for building robust real-world AI systems.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="relative border-t border-white/10 px-6 py-12 lg:px-8">
+    <div class="mx-auto flex max-w-7xl flex-col gap-6 md:flex-row md:items-center md:justify-between">
+      <div>
+        <p class="text-sm uppercase tracking-[0.3em] text-cyan-200">Author</p>
+        <h2 class="mt-2 text-2xl font-black text-white">Nahian Bin Rahman</h2>
+        <a href="https://github.com/nahian-binrahman" class="mt-2 inline-block text-slate-300 hover:text-cyan-200">https://github.com/nahian-binrahman</a>
+      </div>
+      <p class="rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm text-slate-300">⭐ If you found this useful, consider giving it a star!</p>
+    </div>
+  </footer>
+</body>
+</html>

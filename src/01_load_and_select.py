@@ -3,7 +3,7 @@ import pandas as pd
 input_file = "data/raw_reviews.csv"
 output_file = "data/selected_reviews.csv"
 
-df = pd.read_csv(input_file)
+df = pd.read_csv(input_file, engine="python", on_bad_lines="skip")
 
 useful_columns = [
     "reviewID",
@@ -15,7 +15,7 @@ useful_columns = [
     "review",
     "country",
     "helpful_aug",
-    "helpfulness_score"
+    "helpfulness_score",
 ]
 
 df = df[useful_columns]

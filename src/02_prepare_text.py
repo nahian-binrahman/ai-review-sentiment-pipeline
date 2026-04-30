@@ -3,7 +3,7 @@ import pandas as pd
 input_file = "data/selected_reviews.csv"
 output_file = "data/prepared_reviews.csv"
 
-df = pd.read_csv(input_file)
+df = pd.read_csv(input_file, engine="python", on_bad_lines="skip")
 
 df["title"] = df["title"].fillna("")
 df["review"] = df["review"].fillna("")
