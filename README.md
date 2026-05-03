@@ -110,16 +110,24 @@ Ratings are treated as **weak signals**, not ground truth.
 
 ## 🤖 Hybrid Sentiment Model
 
-Uses multiple signals:
+The system combines multiple approaches:
 
-- **TextBlob** → polarity
-- **VADER** → rule-based scoring
-- Custom logic for:
+- **Transformer model (primary prediction)**
+- **TextBlob** → polarity score
+- **VADER** → rule-based sentiment score
+- **Rule-based logic** for contrast words:
   - `but`, `however`, `although`
+
+### How prediction works
+
+1. Transformer generates the main label
+2. TextBlob + VADER provide additional signal
+3. Confidence is calculated using model score + rule strength
+4. Low-confidence predictions are marked as **uncertain**
 
 📌 Example:
 
-> “Nice design, **but** it broke after 2 days”
+> “Nice design, but it broke after 2 days”
 
 → Negative dominates after "but"
 
@@ -160,6 +168,15 @@ data/uncertain_reviews.csv
 Handled separately to **avoid noisy labels**.
 
 ---
+
+### Why uncertainty matters
+
+Uncertain predictions are excluded from evaluation metrics to avoid noisy results.
+
+They are also sent to the human review queue to improve final dataset quality.
+
+This improves reliability but reduces model coverage.
+
 
 ## 🤝 Human-in-the-Loop (HITL)
 
@@ -292,6 +309,24 @@ python run_pipeline.py
 - final_approved_reviews.csv
 
 ---
+## 📊 Key Results
+
+- Agreement with weak labels: ~70%
+- Conflict rate: ~30%
+- Accuracy (excluding uncertain): ~68%
+- Dataset imbalance: Positive-heavy
+
+📌 Note:
+- Metrics are calculated using weak labels (ratings), not true human ground truth
+- Results represent agreement with ratings, not absolute model accuracy
+
+## ⚠️ Limitations
+
+- Small dataset (demo purpose)
+- Highly imbalanced labels
+- Weak labels are noisy
+- Limited multilingual support
+- Neutral class underrepresented
 
 ## 💡 Key Learnings
 
@@ -314,9 +349,10 @@ python run_pipeline.py
 
 ---
 
+
 ## 🏁 Final Outcome
 
-A **production-style AI pipeline** that:
+A **realistic AI data pipeline prototype** that:
 
 - Handles noisy labels
 - Detects conflicts
